@@ -1,20 +1,13 @@
 import json
 import os
-
 from dotenv import load_dotenv
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
-
 load_dotenv()
 
 database_path = os.environ.get('DATABASE_URL')
 
 db = SQLAlchemy()
-
-'''
-setup_db(app)
-    binds a flask application and a SQLAlchemy service
-'''
 
 
 def setup_db(app, database_path=database_path):
@@ -27,20 +20,12 @@ def setup_db(app, database_path=database_path):
         db.create_all()
 
 
-'''
-db_drop_and_create_all()
-    drops the database tables and starts fresh
-    can be used to initialize a clean database
-'''
-
-
 def db_drop_and_create_all():
     db.drop_all()
     db.create_all()
 
     # Add some initial data
     actors = [
-        Actor(name='Leonardo DiCaprio', age=47, gender='Male'),
         Actor(name='Cate Blanchett', age=52, gender='Female'),
         Actor(name='Ryan Gosling', age=41, gender='Male'),
         Actor(name='Julia Roberts', age=54, gender='Female'),
@@ -61,7 +46,6 @@ def db_drop_and_create_all():
         actor.insert()
 
     movies = [
-        Movie(title='Inception', release_date='2010-07-16'),
         Movie(title='Carol ', release_date='2015-11-27'),
         Movie(title='Pulp Fiction', release_date='2023-07-21'),
         Movie(title='runaway bride', release_date='1999-07-30'),

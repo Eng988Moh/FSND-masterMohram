@@ -28,8 +28,9 @@ def create_app(db_uri="", test_config=None):
         setup_db(app, db_uri)
     else:
         setup_db(app)
+
     # Uncomment these to reset the database
-    # WARNING THIS MUST BE UNCOMMENTED ON FIRST RUN
+
     with app.app_context():
         db_drop_and_create_all()
 
@@ -224,6 +225,7 @@ def create_app(db_uri="", test_config=None):
 
 
 # Error Handling
+
 
     @app.errorhandler(422)
     def unprocessable(error):
